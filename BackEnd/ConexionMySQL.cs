@@ -74,7 +74,10 @@ namespace Tarea3_3
                     da.SelectCommand = cmd;
                     da.SelectCommand.Connection = cnn;
                     da.Fill(ds);
-                }
+                }catch(Exception e)
+            {
+
+            }
                 finally
                 {
 
@@ -102,7 +105,11 @@ namespace Tarea3_3
                     da.SelectCommand.Connection = cnn;
                     da.Fill(ds);
                 }
-                finally
+            catch (Exception e)
+            {
+
+            }
+            finally
                 {
 
                     cnn.Close();
