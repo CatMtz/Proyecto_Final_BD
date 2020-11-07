@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Data;
 
-namespace Tarea3_3.DAOS
+namespace BackEnd.DAOS
 {
     public class DAOProducto
     {

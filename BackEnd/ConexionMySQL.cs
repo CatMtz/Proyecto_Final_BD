@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace Tarea3_3
+namespace BackEnd
 {
  
         public  class ConexionMySQL

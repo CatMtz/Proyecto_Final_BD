@@ -12,9 +12,14 @@ namespace Proyecto_Final_BD
 {
     public partial class Principal : Form
     {
+        public static int idusuario;
         public Principal()
         {
             InitializeComponent();
+        }
+        public Principal(int id)
+        {
+            idusuario = id;
         }
     }
 }

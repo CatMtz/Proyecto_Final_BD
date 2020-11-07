@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tarea3_3.DAOS;
-using Tarea3_3.Modelos;
+using BackEnd.DAOS;
+using BackEnd.MODELOS;
+using System.Text.RegularExpressions;
 
-namespace Tarea3_3
+namespace Proyecto_Final_BD
 {
     public partial class Registro : Form
     {
@@ -22,8 +23,8 @@ namespace Tarea3_3
         private void btnSalir_Click(object sender, EventArgs e)
         {
 
-            Principal pri = new Principal();
-            pri.Show();
+            iniciarSesion ini = new iniciarSesion();
+            ini.Show();
             this.Dispose();
         }
 
@@ -39,7 +40,7 @@ namespace Tarea3_3
 
         private void txtApellido_Enter(object sender, EventArgs e)
         {
-            if (txtApellido.Text == "Apellido")
+            if (txtApellido.Text == "Apellidos")
             {
                 txtApellido.Text = "";
                 txtApellido.ForeColor = Color.Silver;
@@ -55,15 +56,7 @@ namespace Tarea3_3
             }
         }
 
-        private void txtEmail_Enter(object sender, EventArgs e)
-        {
-            if (txtEmail.Text == "Email")
-            {
-                txtEmail.Text = "";
-                txtEmail.ForeColor = Color.Silver;
-            }
-        }
-
+   
         private void txtContraseña_Enter(object sender, EventArgs e)
         {
             if (txtContraseña.Text == "Contraseña")
@@ -82,15 +75,7 @@ namespace Tarea3_3
             }
         }
 
-        private void txtDescripcion_Enter(object sender, EventArgs e)
-        {
-            if (txtDescripcion.Text == "Descripcion (Opcional)")
-            {
-                txtDescripcion.Text = "";
-                txtDescripcion.ForeColor = Color.Silver;
-            }
-        }
-
+      
         private void txtNombre_Leave(object sender, EventArgs e)
         {
             if (txtNombre.Text == "")
@@ -104,7 +89,7 @@ namespace Tarea3_3
         {
             if (txtApellido.Text == "")
             {
-                txtApellido.Text = "Apellido";
+                txtApellido.Text = "Apellidos";
                 txtApellido.ForeColor = Color.Silver;
             }
         }
@@ -115,15 +100,6 @@ namespace Tarea3_3
             {
                 txtUsername.Text = "Username";
                 txtUsername.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtEmail_Leave(object sender, EventArgs e)
-        {
-            if (txtEmail.Text == "")
-            {
-                txtEmail.Text = "Email";
-                txtEmail.ForeColor = Color.Silver;
             }
         }
 
@@ -145,33 +121,25 @@ namespace Tarea3_3
             }
         }
 
-        private void txtDescripcion_Leave(object sender, EventArgs e)
-        {
-            if (txtDescripcion.Text == "")
-            {
-                txtDescripcion.Text = "Descripcion (Opcional)";
-                txtDescripcion.ForeColor = Color.Silver;
-            }
-        }
-
+     
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             DAOUsuario usu = new DAOUsuario();
            
-            if(txtNombre.Text!="Nombre"&& txtApellido.Text != "Apellido" && txtUsername.Text != "Username" &&
-                txtEmail.Text != "Email" && txtContraseña.Text != "Contaseña" && txtConfirmar.Text != "Confirmar Contraseña")
+            if(txtNombre.Text!="Nombre"&& txtApellido.Text != "Apellidos" && txtUsername.Text != "Username" &&
+                txtContraseña.Text != "Contraseña" && txtConfirmar.Text != "Confirmar Contraseña")
             {
-                if (txtContraseña.Text.Length>2 && txtContraseña.Text.Length <= 5)
+                if (verificarContraseña(txtContraseña.Text))
                 {
                     if (txtContraseña.Text == txtConfirmar.Text)
                     {
                         Usuario nuevo = new Usuario(txtNombre.Text, txtApellido.Text, txtUsername.Text,
-                      txtEmail.Text, txtContraseña.Text, txtDescripcion.Text);
+                       txtContraseña.Text,"Cliente");
                         usu.registrar(nuevo);
+
                         txtNombre.Text = "";
                         txtApellido.Text = "";
                         txtUsername.Text = "";
-                        txtEmail.Text = "";
                         txtContraseña.Text = "";
                         txtConfirmar.Text = "";
                     }
@@ -190,6 +158,15 @@ namespace Tarea3_3
             {
                 MessageBox.Show("Alguno de los espacios esta en blanco, favor de verificar");
             }
+        }
+        public bool verificarContraseña(String pass)
+        {
+
+            string expresion= @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8}$";
+            Regex automata =new Regex(expresion);
+
+            bool resultado = automata.IsMatch(pass);
+            return resultado;
         }
     }
 }

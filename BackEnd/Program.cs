@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Proyecto_Final_BD
+namespace BackEnd
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Proyecto_Final_BD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Registro());
+          
         }
     }
 }

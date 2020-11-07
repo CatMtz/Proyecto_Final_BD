@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tarea3_3.DAOS;
-using Tarea3_3.Modelos;
+using BackEnd.DAOS;
 
-namespace Tarea3_3
+
+namespace Proyecto_Final_BD
 {
     public partial class iniciarSesion : Form
     {
@@ -27,9 +27,6 @@ namespace Tarea3_3
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            
-            Principal pri = new Principal();
-            pri.Show();
             this.Dispose();
         }
 
@@ -52,7 +49,7 @@ namespace Tarea3_3
         }
 
       
-        private void textBox1_Enter(object sender, EventArgs e)
+        private void txtPassword_Enter(object sender, EventArgs e)
         {
             if (txtPassword.Text == "Password...")
             {
@@ -61,7 +58,7 @@ namespace Tarea3_3
             }
         }
 
-        private void textBox1_Leave(object sender, EventArgs e)
+        private void txtPassword_Leave(object sender, EventArgs e)
         {
             if (txtPassword.Text == "")
             {
@@ -76,8 +73,8 @@ namespace Tarea3_3
 
           if(usu.Verificarusuario(txtNombre.Text, txtPassword.Text)!=null)
             {
-               new Menu( idusu = usu.Verificarusuario(txtNombre.Text, txtPassword.Text).IDUsuario);
-                Menu menu = new Menu();
+               new Principal( idusu = usu.Verificarusuario(txtNombre.Text, txtPassword.Text).IdUsuario);
+                Principal menu = new Principal();
                 menu.Show();
                 this.Hide();
             }
@@ -93,6 +90,13 @@ namespace Tarea3_3
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            Registro reg = new Registro();
+            reg.Show();
+            this.Close();
         }
     }
 }

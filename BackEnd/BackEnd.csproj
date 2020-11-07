@@ -59,6 +59,7 @@
     <Compile Include="MODELOS\Producto.cs" />
     <Compile Include="MODELOS\Proveedor.cs" />
     <Compile Include="MODELOS\Usuario.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
