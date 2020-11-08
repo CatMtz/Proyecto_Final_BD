@@ -16,7 +16,7 @@ namespace Proyecto_Final_BD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Registro());
+            Application.Run(new Principal());
         }
     }
 }

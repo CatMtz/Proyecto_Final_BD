@@ -21,5 +21,20 @@ namespace Proyecto_Final_BD
         {
             idusuario = id;
         }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnIniciarSesion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pctbCarrito_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Holi");
+        }
     }
 }
