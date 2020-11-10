@@ -75,6 +75,23 @@ namespace BackEnd.DAOS
             }
            
         }
-     
+
+        public bool delete(int id)
+        {
+            ConexionMySQL conexion = new ConexionMySQL();
+            try
+            {
+                String SQL = "DELETE FROM Producto WHERE" + " idProducto= '" + id + "';";
+                MySqlCommand sqlcom = new MySqlCommand();
+                sqlcom.CommandText = SQL;
+                conexion.EjecutaSQLComando(sqlcom);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

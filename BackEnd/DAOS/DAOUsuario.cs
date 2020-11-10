@@ -88,7 +88,7 @@ namespace BackEnd.DAOS
             {
                 conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
-                String consulta = "SELECT *  FROM Usuario WHERE Username = @Username AND password = Sha1(@Password)"+";";
+                String consulta = "SELECT *  FROM Usuario WHERE Username = @Username AND password = @Password"+";";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
@@ -102,7 +102,7 @@ namespace BackEnd.DAOS
                     obtenerdatosusuario = new Usuario();
                     obtenerdatosusuario.IdUsuario = lector.GetInt32("IdUsuario");
                     obtenerdatosusuario.Nombre = lector.GetString("Nombre");
-                    obtenerdatosusuario.Apellidos = lector.GetString("Apellido");
+                    obtenerdatosusuario.Apellidos = lector.GetString("Apellidos");
                     obtenerdatosusuario.UserName = lector.GetString("Username");
                     obtenerdatosusuario.Password = lector.GetString("Password");
                     obtenerdatosusuario.Tipo = lector.GetString("Tipo");

@@ -36,6 +36,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbCarrito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPrincipal)).BeginInit();
@@ -46,6 +47,7 @@
             // pnlBotones
             // 
             this.pnlBotones.BackColor = System.Drawing.Color.DimGray;
+            this.pnlBotones.Controls.Add(this.btnCerrar);
             this.pnlBotones.Controls.Add(this.pctbCarrito);
             this.pnlBotones.Controls.Add(this.btnRegistrar);
             this.pnlBotones.Controls.Add(this.btnIniciarSesion);
@@ -63,12 +65,11 @@
             this.pctbCarrito.Size = new System.Drawing.Size(36, 30);
             this.pctbCarrito.TabIndex = 2;
             this.pctbCarrito.TabStop = false;
-            this.pctbCarrito.Click += new System.EventHandler(this.pctbCarrito_Click);
             // 
             // btnRegistrar
             // 
             this.btnRegistrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRegistrar.Location = new System.Drawing.Point(811, 9);
+            this.btnRegistrar.Location = new System.Drawing.Point(107, 9);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(100, 23);
             this.btnRegistrar.TabIndex = 1;
@@ -79,7 +80,7 @@
             // btnIniciarSesion
             // 
             this.btnIniciarSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(707, 9);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(3, 9);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
             this.btnIniciarSesion.Size = new System.Drawing.Size(98, 23);
             this.btnIniciarSesion.TabIndex = 0;
@@ -90,10 +91,11 @@
             // grvPrincipal
             // 
             this.grvPrincipal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvPrincipal.Location = new System.Drawing.Point(310, 69);
+            this.grvPrincipal.Location = new System.Drawing.Point(238, 69);
             this.grvPrincipal.Name = "grvPrincipal";
-            this.grvPrincipal.Size = new System.Drawing.Size(655, 289);
+            this.grvPrincipal.Size = new System.Drawing.Size(741, 289);
             this.grvPrincipal.TabIndex = 1;
+            this.grvPrincipal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvPrincipal_CellContentClick);
             // 
             // panel1
             // 
@@ -126,6 +128,15 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(821, 9);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(90, 23);
+            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.Text = "Cerrar Sesión";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,6 +149,7 @@
             this.Controls.Add(this.pnlBotones);
             this.Name = "Principal";
             this.Text = "Principal";
+            this.Load += new System.EventHandler(this.Principal_Load);
             this.pnlBotones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pctbCarrito)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPrincipal)).EndInit();
@@ -158,5 +170,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
