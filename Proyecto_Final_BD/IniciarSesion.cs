@@ -27,6 +27,7 @@ namespace Proyecto_Final_BD
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            new Principal().Show();
             this.Dispose();
         }
 

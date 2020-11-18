@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BackEnd.DAOS;
+using BackEnd.MODELOS;
 
 namespace Proyecto_Final_BD
 {
@@ -47,8 +48,10 @@ namespace Proyecto_Final_BD
                     DataGridViewButtonColumn btn1 = new DataGridViewButtonColumn();
                     grvPrincipal.Columns.Add(btn);
                     btn.Text = "Editar";
+                    btn.Name = "ColEditar";
                     grvPrincipal.Columns.Add(btn1);
                     btn1.Text = "Eliminar";
+                    btn1.Name = "ColEliminar";
                     btn.UseColumnTextForButtonValue = true;
                     btn1.UseColumnTextForButtonValue = true;
                 }else if(tipo=="Cliente")
@@ -58,6 +61,11 @@ namespace Proyecto_Final_BD
                     btnCerrar.Visible = true;
                     grvPrincipal.DataSource = null;
                     grvPrincipal.DataSource = new DAOProducto().getAll();
+                    DataGridViewButtonColumn btnAñadir = new DataGridViewButtonColumn();
+                    grvPrincipal.Columns.Add(btnAñadir);
+                    btnAñadir.Text = "Añadir";
+                    btnAñadir.Name = "ColAñadir";
+                    btnAñadir.UseColumnTextForButtonValue = true;
                 }
              
 
@@ -73,23 +81,39 @@ namespace Proyecto_Final_BD
 
         private void grvPrincipal_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)  //Dónde la columna con el botón es la 6 con posición 5
+            if (tipo == "Administrador")
             {
-                //Eliminar
-                /*Hacer algo ...*/
-                MessageBox.Show(string.Format("Editar " + e.RowIndex));
-                new Editar(idusuario).Show();
-                this.Hide();
-              
+                if (e.ColumnIndex ==5)  
+                {
+                    MessageBox.Show(string.Format("Editar " + e.RowIndex));
+                    int idprod=int.Parse(""+ grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
+                    new Editar(idprod).Show();
+                    this.Hide();
+                    
+                }
+                if (e.ColumnIndex == 6) 
+                {
+                  
+                    MessageBox.Show(string.Format("Eliminar"));
+                    new DAOProducto().delete((int)grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
+                    actualizarTabla();
 
+                }
             }
-            if (e.ColumnIndex == 5)  //Dónde la columna con el botón es la 6 con posición 5
+            else if (tipo == "Cliente")
             {
-                //Editar
-                /*Hacer algo ...*/
-                MessageBox.Show(string.Format("Eliminar"));
-                new DAOProducto().delete((int)grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
-                actualizarTabla();
+                if (e.ColumnIndex == 4)
+                {
+                    int idpro= int.Parse("" + grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
+                    String nom =""+ grvPrincipal.Rows[e.RowIndex].Cells[1].Value;
+                    int precio =int.Parse(""+grvPrincipal.Rows[e.RowIndex].Cells[2].Value);
+
+
+                    Carritos car = new Carritos(idpro, nom, precio);
+
+                    new DAOCarrito().agregar(car);
+                    
+                }
 
             }
         }
@@ -97,15 +121,18 @@ namespace Proyecto_Final_BD
         {
             if (tipo == "Administrador")
             {
+                grvPrincipal.Columns.Remove("ColEliminar");
+                grvPrincipal.Columns.Remove("ColEditar");
                 grvPrincipal.DataSource = null;
                 grvPrincipal.DataSource = new DAOProducto().getAll();
-                grvPrincipal.Columns.Remove("ColElimiar");
-                grvPrincipal.Columns.Remove("ColEditar");
+             
             }
             else if (tipo=="Cliente")
             {
+                grvPrincipal.Columns.Remove("ColAñadir");
                 grvPrincipal.DataSource = null;
                 grvPrincipal.DataSource = new DAOProducto().getAll();
+               
             }
           
         }

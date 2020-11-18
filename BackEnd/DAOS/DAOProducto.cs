@@ -31,6 +31,7 @@ namespace BackEnd.DAOS
                     datos.Nombre = (String)r.ItemArray[1];
                     datos.Precio = (int)r.ItemArray[2];
                     datos.Descripcion = (String)r.ItemArray[3];
+                    datos.Categoria = (String)r.ItemArray[4];
 
 
                     lista.Add(datos);
@@ -55,7 +56,7 @@ namespace BackEnd.DAOS
             {
                 conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
-                String consulta = "SELECT *  FROM Usuario WHERE idProducto='" + Idproducto + "';";
+                String consulta = "SELECT * FROM producto WHERE idProducto='" + Idproducto + "';";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
@@ -157,12 +158,13 @@ namespace BackEnd.DAOS
             {
                 conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
-                string consulta = "update Producto SET `Nombre` =@Nombre,`Precio` = @Precio,`Descripcion` = @Descripcion,`Categoria` = @Categoria" +
+                string consulta = "update Producto SET `IdProducto` =@ID, `Nombre` =@Nombre,`Precio` = @Precio,`Descripcion` = @Descripcion,`Categoria` = @Categoria" +
                     " Where IdProducto='" + id + "';";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
                 comando.CommandType = System.Data.CommandType.Text;
+                comando.Parameters.AddWithValue("@ID", id);
                 comando.Parameters.AddWithValue("@Nombre", prod.Nombre);
                 comando.Parameters.AddWithValue("@Precio", prod.Precio);
                 comando.Parameters.AddWithValue("@Descripcion", prod.Descripcion);

@@ -27,8 +27,9 @@ namespace Proyecto_Final_BD
         {
             
             grvCarrito.DataSource = null;
-            grvCarrito.DataSource = new DAOProducto().getAll();
-            
+            grvCarrito.DataSource = new DAOCarrito().getAll();
+            grvCarrito.Columns[0].Visible = false;
+
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             grvCarrito.Columns.Add(btn);
             btn.Text = "Eliminar";

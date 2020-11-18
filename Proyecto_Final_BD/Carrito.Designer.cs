@@ -46,9 +46,9 @@
             // grvCarrito
             // 
             this.grvCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvCarrito.Location = new System.Drawing.Point(13, 68);
+            this.grvCarrito.Location = new System.Drawing.Point(150, 102);
             this.grvCarrito.Name = "grvCarrito";
-            this.grvCarrito.Size = new System.Drawing.Size(774, 212);
+            this.grvCarrito.Size = new System.Drawing.Size(476, 225);
             this.grvCarrito.TabIndex = 2;
             this.grvCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvCarrito_CellContentClick);
             // 

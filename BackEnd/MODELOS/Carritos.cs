@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 
 namespace BackEnd.MODELOS
 {
-    public class Carrito
+    public class Carritos
     {
         public int idCarrito { get; set; }
         public int idProducto { get; set; }
         public String NombreProducto { get; set; }
-        public double Precio { get; set; }
-        public int Cantidad { get; set; }
+        public int Precio { get; set; }
+
+
+        public Carritos() { }
+        public Carritos(int idprod, String nom, int prec)
+        {
+            this.idProducto = idprod;
+            this.NombreProducto = nom;
+            this.Precio = prec;
+        }
     }
+    
 }

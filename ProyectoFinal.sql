@@ -1,16 +1,20 @@
 create database ProyectoBD;
 use proyectobd;
-
+drop table Usuario;
+drop table Nota;
 
 create table Usuario(
 IdUsuario int primary key auto_increment not null,
+IdCarrito int not null,
 Nombre varchar(20) not null,
 Apellidos varchar(30) not null,
 UserName varchar(10) not null,
 password varchar(40) not null,
-Tipo enum ('Cliente','Administrador')
+Tipo enum ('Cliente','Administrador'),
+foreign key Usuario(IdCarrito) references Carrito(IdCarrito)
 );
-alter table producto modify column Nombre varchar(35) not null;
+alter table Usuario add column IdCarrito int not null after IdUsuario;
+
 
 create table Producto(
 IdProducto int primary key auto_increment not null,
@@ -22,19 +26,21 @@ foreign key Producto(IdProveedor) references Proveedor(IdProveedor)
 );
 
 select * from producto;
+
 create table Nota(
 IdNota int primary key auto_increment not null,
 Idusuario int not null,
 Descripcion text not null,
 foreign key Nota(IdUsuario) references Usuario(IdUsuario)
 );
-
+drop table carrito;
 create table carrito(
 idCarrito int primary key auto_increment not null,
 idProducto int not null,
 NombreProd varchar(20) not null,
 Precio decimal not null,
-cantidad int not null);
+cantidad int not null,
+foreign key Carrito(IdProducto) references Producto(IdProducto));
 
 INSERT INTO `proyectobd`.`proveedor` VALUES('T2GO','4451234567','Uriangato');
 
