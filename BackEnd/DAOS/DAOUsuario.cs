@@ -11,30 +11,37 @@ namespace BackEnd.DAOS
     public class DAOUsuario
     {
         /// <summary>
-        /// Obtenemos una lista de todos los usuarios en caso de requerirla
+        /// Obtenemos un usuario ya que se requerira para las validaciones
         /// </summary>
         /// <returns></returns>
-        public List<Usuario> getAll()
+        public Usuario getOne(int id)
         {
+            MySqlConnection conexion = null;
             try
             {
-                List<Usuario> lista = new List<Usuario>();
-                ConexionMySQL con = new ConexionMySQL();
+                conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
+                conexion.Open();
 
-                DataSet dat = con.LLenaComboGrid("SELECT * FROM Usuario" + ";");
-                DataTable dt = dat.Tables[0];
-                Usuario datos;
-                foreach (DataRow r in dt.Rows)
+                String consulta = "SELECT * FROM Usuario Where idUsuario='" + id + "';";
+                MySqlCommand comando = new MySqlCommand();
+                comando.Connection = conexion;
+                comando.CommandText = consulta;
+                MySqlDataReader lector = comando.ExecuteReader();
+                Usuario obtenerdatosusuario;
+                if (lector.Read())
                 {
-                    datos = new Usuario();
-                    datos.IdUsuario = (int)r.ItemArray[0];
-                    datos.Nombre = (String)r.ItemArray[1];
-                    datos.Password = (String)r.ItemArray[2];
+                    obtenerdatosusuario = new Usuario();
+                    obtenerdatosusuario.IdUsuario = lector.GetInt32("IdUsuario");
+                    obtenerdatosusuario.Nombre = lector.GetString("Nombre");
+                    obtenerdatosusuario.Apellidos = lector.GetString("Apellidos");
+                    obtenerdatosusuario.UserName = lector.GetString("UserName");
+                    obtenerdatosusuario.Password = lector.GetString("Password");
+                    obtenerdatosusuario.Tipo = lector.GetString("Tipo");
 
 
-                    lista.Add(datos);
+                    return obtenerdatosusuario;
                 }
-                return lista;
+                return null;
             }
             catch (Exception ex)
             {

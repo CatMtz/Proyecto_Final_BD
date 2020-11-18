@@ -28,10 +28,9 @@ namespace BackEnd.DAOS
                 {
                     datos = new Producto();
                     datos.IdProducto = (int)r.ItemArray[0];
-                    datos.IdProveedor = (int)r.ItemArray[1];
-                    datos.Nombre = (String)r.ItemArray[2];
-                    datos.Precio = (int)r.ItemArray[3];
-                    datos.Descripcion = (String)r.ItemArray[4];
+                    datos.Nombre = (String)r.ItemArray[1];
+                    datos.Precio = (int)r.ItemArray[2];
+                    datos.Descripcion = (String)r.ItemArray[3];
 
 
                     lista.Add(datos);
@@ -42,21 +41,64 @@ namespace BackEnd.DAOS
             {
                 throw new Exception("Error al obtener datos del Producto");
             }
-           
+
         }
-       /// <summary>
-       /// Se registra un nuevo Producto
-       /// </summary>
-       /// <param name="obj"></param>
-       /// <returns></returns>
-        public bool registrar(Producto obj)
+        /// <summary>
+        /// Obtenemos un solo producto ya que sera necesario para poder editar nuestro producto
+        /// </summary>
+        /// <param name="Idproducto"></param>
+        /// <returns></returns>
+        public Producto getOne(int Idproducto)
         {
+            MySqlConnection conexion = null;
             try
             {
-                MySqlConnection conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
+                conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
+                conexion.Open();
+                String consulta = "SELECT *  FROM Usuario WHERE idProducto='" + Idproducto + "';";
+                MySqlCommand comando = new MySqlCommand();
+                comando.Connection = conexion;
+                comando.CommandText = consulta;
+                MySqlDataReader lector = comando.ExecuteReader();
+                Producto obtenerdatosusuario;
+                if (lector.Read())
+                {
+                    obtenerdatosusuario = new Producto();
+                    obtenerdatosusuario.IdProducto = lector.GetInt32("IdProducto");
+                    obtenerdatosusuario.Nombre = lector.GetString("Nombre");
+                    obtenerdatosusuario.Precio = lector.GetInt32("Precio");
+                    obtenerdatosusuario.Descripcion = lector.GetString("Descripcion");
+                    obtenerdatosusuario.Categoria = lector.GetString("Categoria");
+
+
+                    return obtenerdatosusuario;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al autenticar");
+            }
+            finally
+            {
+                if (conexion != null)
+                    conexion.Close();
+            }
+        }
+        /// <summary>
+        /// Se registra un nuevo Producto
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public bool registrar(Producto obj)
+        {
+            MySqlConnection conexion = null;
+            try
+            {
+                conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
                 String consulta = "INSERT INTO Producto "
-                    + "VALUES (default,@IdProveedor, @Nombre, @Precio, @Descripcion)"+";";
+                    + "VALUES (default,@IdProveedor, @Nombre, @Precio, @Descripcion)" + ";";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
@@ -73,9 +115,18 @@ namespace BackEnd.DAOS
             {
                 throw new Exception("No se pudo hacer el registro del Producto");
             }
-           
-        }
+            finally
+            {
+                if (conexion != null)
+                    conexion.Close();
+            }
 
+        }
+        /// <summary>
+        /// Metodo utilizado para eliminar un producto de la lista
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool delete(int id)
         {
             ConexionMySQL conexion = new ConexionMySQL();
@@ -89,9 +140,47 @@ namespace BackEnd.DAOS
             }
             catch (Exception)
             {
-                return false;
+                throw new Exception("No se pudo eliminar el Producto");
             }
         }
 
+        /// <summary>
+        /// REcibe los datos de la interfaz "Editar" y asi modificarlos directamente en nuestra base de datos
+        /// </summary>
+        /// <param name="prod"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int Actualizar(Producto prod, int id)
+        {
+            MySqlConnection conexion = null;
+            try
+            {
+                conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
+                conexion.Open();
+                string consulta = "update Producto SET `Nombre` =@Nombre,`Precio` = @Precio,`Descripcion` = @Descripcion,`Categoria` = @Categoria" +
+                    " Where IdProducto='" + id + "';";
+                MySqlCommand comando = new MySqlCommand();
+                comando.Connection = conexion;
+                comando.CommandText = consulta;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.Parameters.AddWithValue("@Nombre", prod.Nombre);
+                comando.Parameters.AddWithValue("@Precio", prod.Precio);
+                comando.Parameters.AddWithValue("@Descripcion", prod.Descripcion);
+                comando.Parameters.AddWithValue("@Categoria", prod.Categoria);
+                int afectados = comando.ExecuteNonQuery();
+                return afectados;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("No se pudo hacer la actualización de la informacion");
+            }
+            finally
+            {
+                if (conexion != null)
+                    conexion.Close();
+            }
+
+        }
     }
 }

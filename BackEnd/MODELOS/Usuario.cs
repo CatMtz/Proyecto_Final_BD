@@ -16,7 +16,14 @@ namespace BackEnd.MODELOS
         public String Tipo { get; set; }
 
         public Usuario() { }
-
+        /// <summary>
+        /// Metodo que recibe los valores a registrar o que se necesitaran
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="ape"></param>
+        /// <param name="user"></param>
+        /// <param name="pass"></param>
+        /// <param name="tipo"></param>
         public Usuario(String nom,String ape,String user,String pass,String tipo)
         {
             Nombre = nom;
