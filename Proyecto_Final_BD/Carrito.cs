@@ -66,5 +66,11 @@ namespace Proyecto_Final_BD
             btn.Text = "Eliminar";
             btn.UseColumnTextForButtonValue = true;
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            new Principal().Show();
+            this.Dispose();
+        }
     }
 }

@@ -34,19 +34,20 @@ Descripcion text not null,
 foreign key Nota(IdUsuario) references Usuario(IdUsuario)
 );
 drop table carrito;
+alter table carrito modify column Precio int not null;
 create table carrito(
 idCarrito int primary key auto_increment not null,
 idProducto int not null,
 NombreProd varchar(20) not null,
 Precio decimal not null,
-cantidad int not null,
 foreign key Carrito(IdProducto) references Producto(IdProducto));
+insert into carrito values(5,2,"Coca",10);
 
 INSERT INTO `proyectobd`.`proveedor` VALUES('T2GO','4451234567','Uriangato');
 
 INSERT INTO `proyectobd`.`producto` VALUES(default,'NIKE XP',180,' ','Varios');
 INSERT INTO `proyectobd`.`producto` VALUES(default,'SOCK DART',180,' ','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(59,'TENIS TRECK 501',180,' ','Varios');
+INSERT INTO `proyectobd`.`producto` VALUES(59,'TENIS TRECK 501',180,' ','Tenis');
 INSERT INTO `proyectobd`.`producto` VALUES(default,'PUMA ROMA ',180,'AMARILLO','Varios');
 INSERT INTO `proyectobd`.`producto` VALUES(default,'AFI NIKE',180,'NEGRO TOTAL','Varios');
 INSERT INTO `proyectobd`.`producto` VALUES(default,'TRECK 1010 ',180,'BLANCO PLATA','Varios');
@@ -61,10 +62,11 @@ INSERT INTO `proyectobd`.`producto` VALUES(default,'NIKE',180,'NEGRO NEON','Vari
 
  -- delete from producto where idproducto=20;
 -- drop table producto;
-INSERT INTO `proyectobd`.`usuario`VALUES(default,'Omar','Martinez Gaytan','Cat1106',12345678,'Administrador');
-INSERT INTO `proyectobd`.`usuario`VALUES(default,'Gato','Martinez Gaytan','Cat0610',12345678,'Cliente');
-
+INSERT INTO `proyectobd`.`usuario`VALUES(default,1,'Omar','Martinez Gaytan','Cat1106',12345678,'Administrador');
+INSERT INTO `proyectobd`.`usuario`VALUES(default,5,'Gato','Martinez Gaytan','Cat0610',12345678,'Cliente');
+insert into carrito values(1,1,'MATE CANTIMPLORA M1',60);
 select * from usuario;
 select * from producto;
-
-
+select * from carrito;
+select idCarrito,idProducto,Nombreprod,Precio
+ from carrito ;

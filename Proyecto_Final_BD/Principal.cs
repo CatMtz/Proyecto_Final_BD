@@ -41,6 +41,8 @@ namespace Proyecto_Final_BD
                     btnRegistrar.Hide();
                     btnIniciarSesion.Hide();
                     btnCerrar.Visible = true;
+                    btnAñadirProd.Visible = true;
+                    pctbCarrito.Visible = false;
                     grvPrincipal.DataSource = null;
                     grvPrincipal.DataSource = new DAOProducto().getAll();
 
@@ -59,6 +61,8 @@ namespace Proyecto_Final_BD
                     btnRegistrar.Hide();
                     btnIniciarSesion.Hide();
                     btnCerrar.Visible = true;
+                    btnAñadirProd.Visible = false;
+                    pctbCarrito.Visible = true;
                     grvPrincipal.DataSource = null;
                     grvPrincipal.DataSource = new DAOProducto().getAll();
                     DataGridViewButtonColumn btnAñadir = new DataGridViewButtonColumn();
@@ -73,6 +77,8 @@ namespace Proyecto_Final_BD
             else
             {
                 btnCerrar.Hide();
+                btnAñadirProd.Hide();
+                pctbCarrito.Visible = false;
                 grvPrincipal.DataSource = null;
                 grvPrincipal.DataSource = new DAOProducto().getAll();
 
@@ -85,7 +91,6 @@ namespace Proyecto_Final_BD
             {
                 if (e.ColumnIndex ==5)  
                 {
-                    MessageBox.Show(string.Format("Editar " + e.RowIndex));
                     int idprod=int.Parse(""+ grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
                     new Editar(idprod).Show();
                     this.Hide();
@@ -94,7 +99,6 @@ namespace Proyecto_Final_BD
                 if (e.ColumnIndex == 6) 
                 {
                   
-                    MessageBox.Show(string.Format("Eliminar"));
                     new DAOProducto().delete((int)grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
                     actualizarTabla();
 
@@ -148,9 +152,16 @@ namespace Proyecto_Final_BD
             btnIniciarSesion.Show();
             btnRegistrar.Show();
             btnCerrar.Hide();
+            pctbCarrito.Visible = false;
             idusuario = 0;
             actualizarTabla();
            
+        }
+
+        private void pctbCarrito_Click(object sender, EventArgs e)
+        {
+            new Carrito().Show();
+            this.Hide();
         }
     }
 }

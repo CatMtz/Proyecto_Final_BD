@@ -34,6 +34,7 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.grvPrincipal = new System.Windows.Forms.DataGridView();
+            this.btnAñadirProd = new System.Windows.Forms.Button();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbCarrito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPrincipal)).BeginInit();
@@ -42,6 +43,7 @@
             // pnlBotones
             // 
             this.pnlBotones.BackColor = System.Drawing.Color.DimGray;
+            this.pnlBotones.Controls.Add(this.btnAñadirProd);
             this.pnlBotones.Controls.Add(this.btnCerrar);
             this.pnlBotones.Controls.Add(this.pctbCarrito);
             this.pnlBotones.Controls.Add(this.btnRegistrar);
@@ -63,12 +65,14 @@
             // 
             // pctbCarrito
             // 
+            this.pctbCarrito.BackgroundImage = global::Proyecto_Final_BD.Properties.Resources.Carrito;
             this.pctbCarrito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pctbCarrito.Location = new System.Drawing.Point(917, 3);
             this.pctbCarrito.Name = "pctbCarrito";
             this.pctbCarrito.Size = new System.Drawing.Size(36, 30);
             this.pctbCarrito.TabIndex = 2;
             this.pctbCarrito.TabStop = false;
+            this.pctbCarrito.Click += new System.EventHandler(this.pctbCarrito_Click);
             // 
             // btnRegistrar
             // 
@@ -101,10 +105,20 @@
             this.grvPrincipal.TabIndex = 1;
             this.grvPrincipal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvPrincipal_CellContentClick);
             // 
+            // btnAñadirProd
+            // 
+            this.btnAñadirProd.Location = new System.Drawing.Point(733, 9);
+            this.btnAñadirProd.Name = "btnAñadirProd";
+            this.btnAñadirProd.Size = new System.Drawing.Size(82, 23);
+            this.btnAñadirProd.TabIndex = 4;
+            this.btnAñadirProd.Text = "Añadir";
+            this.btnAñadirProd.UseVisualStyleBackColor = true;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Proyecto_Final_BD.Properties.Resources.Fondo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(991, 391);
             this.Controls.Add(this.grvPrincipal);
@@ -127,5 +141,6 @@
         private System.Windows.Forms.DataGridView grvPrincipal;
         private System.Windows.Forms.PictureBox pctbCarrito;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnAñadirProd;
     }
 }

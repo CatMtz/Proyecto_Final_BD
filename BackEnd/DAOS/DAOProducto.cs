@@ -99,7 +99,7 @@ namespace BackEnd.DAOS
                 conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
                 String consulta = "INSERT INTO Producto "
-                    + "VALUES (default,@IdProveedor, @Nombre, @Precio, @Descripcion)" + ";";
+                    + "VALUES (default, @Nombre, @Precio, @Descripcion)" + ";";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
