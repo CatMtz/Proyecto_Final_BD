@@ -111,9 +111,7 @@ namespace Proyecto_Final_BD
                     int idpro= int.Parse("" + grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
                     String nom =""+ grvPrincipal.Rows[e.RowIndex].Cells[1].Value;
                     int precio =int.Parse(""+grvPrincipal.Rows[e.RowIndex].Cells[2].Value);
-
-
-                    Carritos car = new Carritos(idpro, nom, precio);
+                    Carritos car = new Carritos(idusuario,idpro, nom, precio);
 
                     new DAOCarrito().agregar(car);
                     
@@ -160,7 +158,7 @@ namespace Proyecto_Final_BD
 
         private void pctbCarrito_Click(object sender, EventArgs e)
         {
-            new Carrito().Show();
+            new Carrito(idusuario).Show();
             this.Hide();
         }
     }

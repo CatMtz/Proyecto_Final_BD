@@ -12,40 +12,7 @@ namespace BackEnd.DAOS
 {
     public class DAOCarrito
     {
-        /// <summary>
-        /// Obtenemos una lista de todos lo que hay en carrito para su respectiva interfaz
-        /// </summary>
-        /// <returns></returns>
-        public List<Carritos> getAll()
-        {
-            try
-            {
-                List<Carritos> lista = new List<Carritos>();
-                ConexionMySQL con = new ConexionMySQL();
-
-                DataSet dat = con.LLenaComboGrid("SELECT * FROM Carrito" + ";");
-                DataTable dt = dat.Tables[0];
-                Carritos datos;
-                foreach (DataRow r in dt.Rows)
-                {
-                    datos = new Carritos();
-                    datos.idCarrito = (int)r.ItemArray[0];
-                    datos.idProducto = (int)r.ItemArray[1];
-                    datos.NombreProducto = (String)r.ItemArray[2];
-                    datos.Precio = (int)r.ItemArray[3];
-                
-
-
-                    lista.Add(datos);
-                }
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener datos del Producto");
-            }
-
-        }
+     
         /// <summary>
         /// Usaremos el metodo de eliminar para poder quitar elementos de nuestro carrito
         /// </summary>
@@ -67,46 +34,48 @@ namespace BackEnd.DAOS
                 return false;
             }
         }
-
-        public Carritos getOne(String id)
+        /// <summary>
+        /// Obtendremos un carrito en base al usuario actual para traer todos los productos que ha escogido
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<Carritos> getOne(int id)
         {
-            MySqlConnection conexion = null;
+            ConexionMySQL con = null;
             try
             {
-                conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
-                conexion.Open();
-                String consulta = "SELECT * FROM Carrito WHERE idcarrito='" + id + "';";
-                MySqlCommand comando = new MySqlCommand();
-                comando.Connection = conexion;
-                comando.CommandText = consulta;
-                MySqlDataReader lector = comando.ExecuteReader();
-                Carritos obtenerdatosusuario;
-                if (lector.Read())
+                List<Carritos> lista = new List<Carritos>();
+                 con = new ConexionMySQL();
+
+                DataSet dat = con.LLenaComboGrid("select *, sum(precio) as total from carrito where idusuario=" + id + " group by idproducto;");
+                DataTable dt = dat.Tables[0];
+                Carritos datos;
+                foreach (DataRow r in dt.Rows)
                 {
-                    obtenerdatosusuario = new Carritos();
-                    obtenerdatosusuario.idCarrito = lector.GetInt32("idCarrito");
-                    obtenerdatosusuario.idProducto = lector.GetInt32("idProducto");
-                    obtenerdatosusuario.NombreProducto = lector.GetString("NombreProd");
-                    obtenerdatosusuario.Precio = lector.GetInt32("Precio");
+                    datos = new Carritos();
+                    datos.idCarrito = (int)r.ItemArray[0];
+                    datos.idUsuario = (int)r.ItemArray[1];
+                    datos.idProducto = (int)r.ItemArray[2];
+                    datos.NombreProducto = (String)r.ItemArray[3];
+                    datos.Precio = (int)r.ItemArray[4];
+                    datos.Total = (decimal)r.ItemArray[5];
 
-
-
-                    return obtenerdatosusuario;
+                    lista.Add(datos);
                 }
-                return null;
+                return lista;
             }
             catch (Exception ex)
             {
-                return null;
-            }
-            finally
-            {
-                if (conexion != null)
-                    conexion.Close();
+                throw new Exception("No se pudo traer el carrito");
             }
         }
 
-
+        /// <summary>
+        /// Utilizaremos el metodo agregar para cada vez que el usuario agregue un producto al carrito desde la 
+        /// pagina principal
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns></returns>
         public int agregar(Carritos m)
         {
             MySqlConnection conexion = null;
@@ -139,6 +108,28 @@ namespace BackEnd.DAOS
                 {
                     conexion.Close();
                 }
+            }
+
+        }
+        /// <summary>
+        /// se utilizara este metodo para eliminar todo lo que se encuentra en el carrito para la proxima compra
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool deleteAll(int id)
+        {
+            ConexionMySQL conexion = new ConexionMySQL();
+            try
+            {
+                String SQL = "DELETE FROM carrito WHERE" + " idusuario= " + id + ";";
+                MySqlCommand sqlcom = new MySqlCommand();
+                sqlcom.CommandText = SQL;
+                conexion.EjecutaSQLComando(sqlcom);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error al eliminar carrito");
             }
 
         }

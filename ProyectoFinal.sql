@@ -34,14 +34,18 @@ Descripcion text not null,
 foreign key Nota(IdUsuario) references Usuario(IdUsuario)
 );
 drop table carrito;
-alter table carrito modify column Precio int not null;
+alter table carrito add foreign key usuario(Idusuario) references Usuario(IdUsuario);
+alter table carrito modify column precio int not null;
+drop table carrito;
 create table carrito(
 idCarrito int primary key auto_increment not null,
+idUsuario int not null,
 idProducto int not null,
 NombreProd varchar(20) not null,
-Precio decimal not null,
-foreign key Carrito(IdProducto) references Producto(IdProducto));
-insert into carrito values(5,2,"Coca",10);
+Precio int not null,
+foreign key Carrito(IdProducto) references Producto(IdProducto),
+foreign key usuario(Idusuario) references Usuario(IdUsuario));
+insert into carrito values(default,2,5,"Pepsi",22);
 
 INSERT INTO `proyectobd`.`proveedor` VALUES('T2GO','4451234567','Uriangato');
 
@@ -67,6 +71,7 @@ INSERT INTO `proyectobd`.`usuario`VALUES(default,5,'Gato','Martinez Gaytan','Cat
 insert into carrito values(1,1,'MATE CANTIMPLORA M1',60);
 select * from usuario;
 select * from producto;
-select * from carrito;
+
+select *, sum(precio) as total from carrito group by idproducto;
 select idCarrito,idProducto,Nombreprod,Precio
  from carrito ;

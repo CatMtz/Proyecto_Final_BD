@@ -32,6 +32,7 @@
             this.grvCarrito = new System.Windows.Forms.DataGridView();
             this.btnComprar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grvCarrito)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,9 +49,9 @@
             // grvCarrito
             // 
             this.grvCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grvCarrito.Location = new System.Drawing.Point(150, 102);
+            this.grvCarrito.Location = new System.Drawing.Point(147, 87);
             this.grvCarrito.Name = "grvCarrito";
-            this.grvCarrito.Size = new System.Drawing.Size(476, 225);
+            this.grvCarrito.Size = new System.Drawing.Size(445, 234);
             this.grvCarrito.TabIndex = 2;
             this.grvCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvCarrito_CellContentClick);
             // 
@@ -62,6 +63,7 @@
             this.btnComprar.TabIndex = 3;
             this.btnComprar.Text = "Comprar";
             this.btnComprar.UseVisualStyleBackColor = true;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // btnSalir
             // 
@@ -74,11 +76,21 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(510, 358);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(13, 13);
+            this.lblTotal.TabIndex = 5;
+            this.lblTotal.Text = "  ";
+            // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 396);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComprar);
             this.Controls.Add(this.grvCarrito);
@@ -88,6 +100,7 @@
             this.Load += new System.EventHandler(this.Carrito_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grvCarrito)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -97,5 +110,6 @@
         private System.Windows.Forms.DataGridView grvCarrito;
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
