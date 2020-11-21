@@ -61,7 +61,7 @@ namespace BackEnd.DAOS
                 MySqlConnection conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
                 String consulta = "INSERT INTO Usuario "
-                    + "VALUES (default,@Nombre, @Apellido, @Username, Sha1(@Password), @Tipo)"+";";
+                    + "VALUES (default,@Nombre, @Apellido, @Username, Sha1(@Contraseña), @Tipo)"+";";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
@@ -95,7 +95,7 @@ namespace BackEnd.DAOS
             {
                 conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
-                String consulta = "SELECT *  FROM Usuario WHERE Username = @Username AND password = @Password"+";";
+                String consulta = "SELECT *  FROM Usuario WHERE Username = @Username AND password = sha1(@Password)"+";";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;

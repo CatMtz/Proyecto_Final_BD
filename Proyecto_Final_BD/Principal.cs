@@ -27,7 +27,8 @@ namespace Proyecto_Final_BD
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
-
+            new Registro().Show();
+            this.Hide();
         }
 
         private void Principal_Load(object sender, EventArgs e)
@@ -106,7 +107,8 @@ namespace Proyecto_Final_BD
             }
             else if (tipo == "Cliente")
             {
-                if (e.ColumnIndex == 4)
+              
+                if (e.ColumnIndex == 5)
                 {
                     int idpro= int.Parse("" + grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
                     String nom =""+ grvPrincipal.Rows[e.RowIndex].Cells[1].Value;

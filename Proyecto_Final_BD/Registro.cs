@@ -23,8 +23,7 @@ namespace Proyecto_Final_BD
         private void btnSalir_Click(object sender, EventArgs e)
         {
 
-            iniciarSesion ini = new iniciarSesion();
-            ini.Show();
+            new Principal().Show();
             this.Dispose();
         }
 
@@ -137,11 +136,11 @@ namespace Proyecto_Final_BD
                        txtContraseña.Text,"Cliente");
                         usu.registrar(nuevo);
 
-                        txtNombre.Text = "";
-                        txtApellido.Text = "";
-                        txtUsername.Text = "";
-                        txtContraseña.Text = "";
-                        txtConfirmar.Text = "";
+                        txtNombre.Text = "registro";
+                        txtApellido.Text = "Apellidos";
+                        txtUsername.Text = "UserName";
+                        txtContraseña.Text = "Contraseña";
+                        txtConfirmar.Text = "Confirmar Contraseña";
                     }
                     else
                     {

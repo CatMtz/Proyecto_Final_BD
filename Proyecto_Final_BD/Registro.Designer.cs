@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.txtConfirmar = new System.Windows.Forms.TextBox();
             this.txtContraseña = new System.Windows.Forms.TextBox();
@@ -37,7 +38,6 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +61,16 @@
             this.panel1.Size = new System.Drawing.Size(576, 350);
             this.panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 202);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(284, 39);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "La contraseña debe tener 8 caracteres,al menos un dígito,\r\n al menos una minúscul" +
+    "a y al menos una mayúscula.\r\nNO puede tener otros símbolos.";
+            // 
             // btnSalir
             // 
             this.btnSalir.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -79,6 +89,7 @@
             this.txtConfirmar.Location = new System.Drawing.Point(274, 163);
             this.txtConfirmar.Multiline = true;
             this.txtConfirmar.Name = "txtConfirmar";
+            this.txtConfirmar.PasswordChar = '*';
             this.txtConfirmar.Size = new System.Drawing.Size(223, 36);
             this.txtConfirmar.TabIndex = 6;
             this.txtConfirmar.Text = "Confirmar Contraseña";
@@ -93,6 +104,7 @@
             this.txtContraseña.Location = new System.Drawing.Point(61, 163);
             this.txtContraseña.Multiline = true;
             this.txtContraseña.Name = "txtContraseña";
+            this.txtContraseña.PasswordChar = '*';
             this.txtContraseña.Size = new System.Drawing.Size(188, 36);
             this.txtContraseña.TabIndex = 5;
             this.txtContraseña.Text = "Contraseña";
@@ -161,16 +173,6 @@
             this.label1.Size = new System.Drawing.Size(271, 59);
             this.label1.TabIndex = 0;
             this.label1.Text = "Registro";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 202);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(284, 39);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "La contraseña debe tener 8 caracteres,al menos un dígito,\r\n al menos una minúscul" +
-    "a y al menos una mayúscula.\r\nNO puede tener otros símbolos.";
             // 
             // Registro
             // 

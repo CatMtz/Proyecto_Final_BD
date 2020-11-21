@@ -38,6 +38,7 @@ namespace Proyecto_Final_BD
             DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
             grvCarrito.Columns.Add(btn);
             btn.Text = "Eliminar";
+            btn.Name = "Eliminar";
             btn.UseColumnTextForButtonValue = true;
          
 
@@ -56,7 +57,7 @@ namespace Proyecto_Final_BD
                 /*Hacer algo ...*/
                 MessageBox.Show(string.Format("Elimiar " +e.RowIndex));
                 new DAOProducto().delete((int)grvCarrito.Rows[e.RowIndex].Cells[0].Value);
-                grvCarrito.Columns.Remove("ColEliminar");
+                grvCarrito.Columns.Remove("Eliminar");
                 actualizarTabla();
 
             }
@@ -86,14 +87,15 @@ namespace Proyecto_Final_BD
                 writer.Write("\n\n\n");
                 for (int i = 0; i < grvCarrito.Rows.Count; i++)
                 {
-                    writer.WriteLine("-----------------------------------------------------");
+                    writer.WriteLine("---------------------------------------------------------------------------------------");
                     for (int j = 0; j < grvCarrito.Columns.Count-1; j++)
                     {
-                        writer.Write("\t" + grvCarrito.Rows[i].Cells[j].Value + "\t" + "|");
+                        writer.Write("\t" +grvCarrito.Columns[j].Name+": "+ grvCarrito.Rows[i].Cells[j].Value + "\t" + "|");
                     }
                     writer.WriteLine("");
-                    writer.WriteLine("-----------------------------------------------------");
+                    writer.WriteLine("---------------------------------------------------------------------------------------");
                 }
+                
                 writer.Write(new DAOUsuario().getOne(idusuario).Nombre+" "+ new DAOUsuario().getOne(idusuario).Apellidos + "\t\t\t\t" + lblTotal.Text);
                 bool borrar = new DAOCarrito().deleteAll(idusuario);
                 MessageBox.Show("Se realizo la compra con exito");

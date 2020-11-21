@@ -1,7 +1,5 @@
 create database ProyectoBD;
 use proyectobd;
-drop table Usuario;
-drop table Nota;
 
 create table Usuario(
 IdUsuario int primary key auto_increment not null,
@@ -13,8 +11,6 @@ password varchar(40) not null,
 Tipo enum ('Cliente','Administrador'),
 foreign key Usuario(IdCarrito) references Carrito(IdCarrito)
 );
-alter table Usuario add column IdCarrito int not null after IdUsuario;
-
 
 create table Producto(
 IdProducto int primary key auto_increment not null,
@@ -25,18 +21,6 @@ Categoria varchar(15) not null,
 foreign key Producto(IdProveedor) references Proveedor(IdProveedor)
 );
 
-select * from producto;
-
-create table Nota(
-IdNota int primary key auto_increment not null,
-Idusuario int not null,
-Descripcion text not null,
-foreign key Nota(IdUsuario) references Usuario(IdUsuario)
-);
-drop table carrito;
-alter table carrito add foreign key usuario(Idusuario) references Usuario(IdUsuario);
-alter table carrito modify column precio int not null;
-drop table carrito;
 create table carrito(
 idCarrito int primary key auto_increment not null,
 idUsuario int not null,
@@ -45,33 +29,5 @@ NombreProd varchar(20) not null,
 Precio int not null,
 foreign key Carrito(IdProducto) references Producto(IdProducto),
 foreign key usuario(Idusuario) references Usuario(IdUsuario));
-insert into carrito values(default,2,5,"Pepsi",22);
 
-INSERT INTO `proyectobd`.`proveedor` VALUES('T2GO','4451234567','Uriangato');
-
-INSERT INTO `proyectobd`.`producto` VALUES(default,'NIKE XP',180,' ','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'SOCK DART',180,' ','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(59,'TENIS TRECK 501',180,' ','Tenis');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'PUMA ROMA ',180,'AMARILLO','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'AFI NIKE',180,'NEGRO TOTAL','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'TRECK 1010 ',180,'BLANCO PLATA','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'ADIDAS',180,'CONCHA FRANCIA','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'VANS 500',180,'OXFORD','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'PUMA',180,'TRANSFORT 8.5','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'N-020 7.5',180,' ','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'ADIDAS 006',180,'NEGRO BLANCO','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'NIKE 1070 6',180,'','Varios');
-INSERT INTO `proyectobd`.`producto` VALUES(default,'NIKE',180,'NEGRO NEON','Varios');
-
-
- -- delete from producto where idproducto=20;
--- drop table producto;
-INSERT INTO `proyectobd`.`usuario`VALUES(default,1,'Omar','Martinez Gaytan','Cat1106',12345678,'Administrador');
-INSERT INTO `proyectobd`.`usuario`VALUES(default,5,'Gato','Martinez Gaytan','Cat0610',12345678,'Cliente');
-insert into carrito values(1,1,'MATE CANTIMPLORA M1',60);
-select * from usuario;
-select * from producto;
-
-select *, sum(precio) as total from carrito group by idproducto;
-select idCarrito,idProducto,Nombreprod,Precio
- from carrito ;
+select *,count(*) as cantidad , sum(precio) as total from carrito where idusuario=3 group by idproducto;
