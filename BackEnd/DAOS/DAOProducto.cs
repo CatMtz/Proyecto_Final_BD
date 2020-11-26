@@ -29,7 +29,7 @@ namespace BackEnd.DAOS
                     datos = new Producto();
                     datos.IdProducto = (int)r.ItemArray[0];
                     datos.Nombre = (String)r.ItemArray[1];
-                    datos.Precio = (int)r.ItemArray[2];
+                    datos.Precio = (Decimal)r.ItemArray[2];
                     datos.Descripcion = (String)r.ItemArray[3];
                     datos.Categoria = (String)r.ItemArray[4];
 

@@ -10,13 +10,13 @@ namespace BackEnd.MODELOS
     {
         public int IdProducto { get; set; }
         public String Nombre { get; set; }
-        public int Precio { get; set; }
+        public Decimal Precio { get; set; }
         public String Descripcion { get; set; }
         public String Categoria { get; set; }
 
         public Producto() { }
 
-        public Producto(String nom,int pre,String des,String cat)
+        public Producto(String nom,decimal pre,String des,String cat)
         {
             Nombre = nom;
             Precio = pre;

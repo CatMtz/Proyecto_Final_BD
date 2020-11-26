@@ -57,7 +57,7 @@ namespace BackEnd.DAOS
                     datos.idUsuario = (int)r.ItemArray[1];
                     datos.idProducto = (int)r.ItemArray[2];
                     datos.NombreProducto = (String)r.ItemArray[3];
-                    datos.Precio = (int)r.ItemArray[4];
+                    datos.Precio = (Decimal)r.ItemArray[4];
                     datos.Cantidad = (Int64)r.ItemArray[5];
                     datos.Total = (decimal)r.ItemArray[6];
 

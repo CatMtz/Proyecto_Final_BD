@@ -81,22 +81,24 @@ namespace Proyecto_Final_BD
 
         private void btnComprar_Click(object sender, EventArgs e)
         {
-            TextWriter writer = new StreamWriter(@"C:\Users\micue\Documents\Visual Studio 2015\Projects\Proyecto_Final_BD\Proyecto_Final_BD\Notas.txt", true);
+            String descripcion = "";
             try
             {
-                writer.Write("\n\n\n");
                 for (int i = 0; i < grvCarrito.Rows.Count; i++)
                 {
-                    writer.WriteLine("---------------------------------------------------------------------------------------");
-                    for (int j = 0; j < grvCarrito.Columns.Count-1; j++)
+
+                    for (int j = 0; j < grvCarrito.Columns.Count - 1; j++)
                     {
-                        writer.Write("\t" +grvCarrito.Columns[j].Name+": "+ grvCarrito.Rows[i].Cells[j].Value + "\t" + "|");
+                        descripcion += ("" + grvCarrito.Columns[j].Name + ": " + grvCarrito.Rows[i].Cells[j].Value + "\t" + "| \n" +
+                           "  ");
                     }
-                    writer.WriteLine("");
-                    writer.WriteLine("---------------------------------------------------------------------------------------");
+
+                    descripcion += ("\n ---------------------------------------------------------------------------------------\n");
                 }
-                
-                writer.Write(new DAOUsuario().getOne(idusuario).Nombre+" "+ new DAOUsuario().getOne(idusuario).Apellidos + "\t\t\t\t" + lblTotal.Text);
+
+
+                descripcion+="\n"+(new DAOUsuario().getOne(idusuario).Nombre+" "+ new DAOUsuario().getOne(idusuario).Apellidos + "\t\t\t\t" + lblTotal.Text);
+                new DaoCompra().agregar(new Compra(idusuario, descripcion));
                 bool borrar = new DAOCarrito().deleteAll(idusuario);
                 MessageBox.Show("Se realizo la compra con exito");
                 new Principal().Show();
@@ -106,10 +108,7 @@ namespace Proyecto_Final_BD
             {
 
             }
-            finally
-            {
-                writer.Close();
-            }
+           
         }
         protected List<Carritos> traer(int id)
         {

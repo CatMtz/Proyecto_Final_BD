@@ -12,13 +12,13 @@ namespace BackEnd.MODELOS
         public int idUsuario { get; set; }
         public int idProducto { get; set; }
         public String NombreProducto { get; set; }
-        public int Precio { get; set; }
+        public Decimal Precio { get; set; }
         public Int64 Cantidad { get; set; }
         public decimal Total { get; set; }
 
 
         public Carritos() { }
-        public Carritos(int usu,int idprod, String nom, int prec)
+        public Carritos(int usu,int idprod, String nom, Decimal prec)
         {
             this.idUsuario = usu;
             this.idProducto = idprod;

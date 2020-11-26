@@ -146,9 +146,6 @@ namespace Proyecto_Final_BD
                     {
                         MessageBox.Show("Las contraseñas no coinciden");
                     }
-                }else
-                {
-                    MessageBox.Show("La contraseña debe ser entre 2 y 5 caracteres");
                 }
                
               
