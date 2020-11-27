@@ -113,9 +113,11 @@ namespace Proyecto_Final_BD
                     int idpro= int.Parse("" + grvPrincipal.Rows[e.RowIndex].Cells[0].Value);
                     String nom =""+ grvPrincipal.Rows[e.RowIndex].Cells[1].Value;
                     Decimal precio =Decimal.Parse(""+grvPrincipal.Rows[e.RowIndex].Cells[2].Value);
-                    Carritos car = new Carritos(idusuario,idpro, nom, precio);
-
+                    Carritos car = new Carritos(idusuario,idusuario, nom);
+                    DetalleProducto det = new DetalleProducto(1,idpro, precio, 1);
                     new DAOCarrito().agregar(car);
+                    new DaoDetalleProducto().agregar(det,nom,idusuario);
+
                     
                 }
 

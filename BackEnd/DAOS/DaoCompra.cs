@@ -69,7 +69,7 @@ namespace BackEnd.DAOS
             catch (Exception ex)
             {
                 throw new Exception("No se pudo registrar el producto en carrito");
-                return 0;
+              
             }
             finally
             {

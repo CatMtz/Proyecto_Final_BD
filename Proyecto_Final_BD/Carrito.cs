@@ -100,6 +100,7 @@ namespace Proyecto_Final_BD
                 descripcion+="\n"+(new DAOUsuario().getOne(idusuario).Nombre+" "+ new DAOUsuario().getOne(idusuario).Apellidos + "\t\t\t\t" + lblTotal.Text);
                 new DaoCompra().agregar(new Compra(idusuario, descripcion));
                 bool borrar = new DAOCarrito().deleteAll(idusuario);
+                new DaoDetalleProducto().delete();
                 MessageBox.Show("Se realizo la compra con exito");
                 new Principal().Show();
                 this.Dispose();

@@ -47,18 +47,21 @@ namespace BackEnd.DAOS
                 List<Carritos> lista = new List<Carritos>();
                  con = new ConexionMySQL();
 
-                DataSet dat = con.LLenaComboGrid("select *,count(*) as cantidad , sum(precio) as total from carrito where idusuario=" + id + " group by idproducto;");
+                DataSet dat = con.LLenaComboGrid("select c.idUsuario,dp.idproducto,c.NombreProd,c.FechaCompra,dp.precio," +
+                    "dp.cantidad, dp.precio*Cantidad as total "+
+                    "from carrito c join detalleproducto dp on c.idcarrito=dp.idcarrito"+
+                    " where idusuario=" + id + " group by idproducto;");
                 DataTable dt = dat.Tables[0];
                 Carritos datos;
                 foreach (DataRow r in dt.Rows)
                 {
                     datos = new Carritos();
-                    datos.idCarrito = (int)r.ItemArray[0];
-                    datos.idUsuario = (int)r.ItemArray[1];
-                    datos.idProducto = (int)r.ItemArray[2];
-                    datos.NombreProducto = (String)r.ItemArray[3];
-                    datos.Precio = (Decimal)r.ItemArray[4];
-                    datos.Cantidad = (Int64)r.ItemArray[5];
+                    datos.idUsuario = (int)r.ItemArray[0];
+                    datos.idProducto = (int)r.ItemArray[1];
+                    datos.NombreProducto = (String)r.ItemArray[2];
+                    datos.FechaCompra = (DateTime)r.ItemArray[3];
+                    datos.Precio = (decimal)r.ItemArray[4];
+                    datos.cantidad = (int)r.ItemArray[5];
                     datos.Total = (decimal)r.ItemArray[6];
 
                     lista.Add(datos);
@@ -86,15 +89,13 @@ namespace BackEnd.DAOS
                  conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
                 String consulta = "INSERT INTO carrito "
-                    + "VALUES (default,@idUsuario,@IdProducto,@Nombreproducto, @Precio)";
+                    + "VALUES (default,@idUsuario,@Nombreproducto,now())";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.Parameters.AddWithValue("@idUsuario", m.idUsuario);
                 comando.Parameters.AddWithValue("@Nombreproducto", m.NombreProducto);
-                comando.Parameters.AddWithValue("@Precio", m.Precio);
-                comando.Parameters.AddWithValue("@IdProducto", m.idProducto);
                 afectados = comando.ExecuteNonQuery();
                
                 return afectados;
