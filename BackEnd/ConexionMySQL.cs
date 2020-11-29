@@ -56,7 +56,7 @@ namespace BackEnd
         /// <summary>
         /// Este método se utiliza más para las consultas que devolveran
         /// más de un registro de la base de datos y se colocaran en una tabla
-        /// y recibe la consulta 
+        /// que recibe la consulta 
         /// </summary>
         /// <param name="mysql"></param>
         /// <returns></returns>

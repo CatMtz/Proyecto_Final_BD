@@ -40,6 +40,9 @@ namespace Proyecto_Final_BD
             if (new DAOProducto().Actualizar(produc, idprod) == 1)
             {
                 MessageBox.Show("Los Datos se actualizaron con exito");
+            }else
+            {
+                
             }
             new Principal().Show();
             this.Dispose();

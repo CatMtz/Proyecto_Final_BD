@@ -53,7 +53,6 @@
     <Compile Include="ConexionMySQL.cs" />
     <Compile Include="DAOS\DAOCarrito.cs" />
     <Compile Include="DAOS\DaoDetalleProducto.cs" />
-    <Compile Include="DAOS\DAOProveedor.cs" />
     <Compile Include="DAOS\DAOProducto.cs" />
     <Compile Include="DAOS\DAONota.cs" />
     <Compile Include="DAOS\DaoReporte.cs" />
@@ -63,7 +62,6 @@
     <Compile Include="MODELOS\DetalleProducto.cs" />
     <Compile Include="MODELOS\Nota.cs" />
     <Compile Include="MODELOS\Producto.cs" />
-    <Compile Include="MODELOS\Proveedor.cs" />
     <Compile Include="MODELOS\ReporteVentaPeriodo.cs" />
     <Compile Include="MODELOS\ReporteCliente.cs" />
     <Compile Include="MODELOS\Usuario.cs" />

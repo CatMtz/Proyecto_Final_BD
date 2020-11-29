@@ -64,6 +64,7 @@ namespace Proyecto_Final_BD
                     btnIniciarSesion.Hide();
                     btnCerrar.Visible = true;
                     btnAñadirProd.Visible = false;
+                    btnReportes.Hide();
                     pctbCarrito.Visible = true;
                     grvPrincipal.DataSource = null;
                     grvPrincipal.DataSource = new DAOProducto().getAll();
@@ -81,6 +82,7 @@ namespace Proyecto_Final_BD
                 btnReportes.Hide();
                 btnCerrar.Hide();
                 btnAñadirProd.Hide();
+                btnReportes.Hide();
                 pctbCarrito.Visible = false;
                 grvPrincipal.DataSource = null;
                 grvPrincipal.DataSource = new DAOProducto().getAll();

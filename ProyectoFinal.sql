@@ -1,10 +1,6 @@
 create database ProyectoBD;
 use proyectobd;
 
-
-
-select * from compra;
-
 create table Usuario(
 IdUsuario int primary key auto_increment not null,
 IdCarrito int not null,
@@ -12,7 +8,7 @@ Nombre varchar(20) not null,
 Apellidos varchar(30) not null,
 UserName varchar(10) not null,
 password varchar(40) not null,
-Tipo enum ('Cliente','Administrador'),
+Tipo enum ('Cliente','Administrador') not null,
 foreign key Usuario(IdCarrito) references Carrito(IdCarrito)
 );
 
@@ -34,23 +30,14 @@ NombreProd varchar(35) not null,
 FechaCompra datetime not null,
 foreign key usuario(Idusuario) references Usuario(IdUsuario));
 
-
-insert into carrito values(default,5,'Tenis',now());
-
-INSERT INTO detalleproducto VALUES (
-(select c.idcarrito from carrito c 
-where c.NombreProd='Tenis' and idUsuario=5 group by idUsuario),59,180,1);
-
-select c.idcarrito from carrito c join detalleproducto dp on c.idcarrito=dp.idcarrito 
- where NombreProd='Tenis' group by dp.idproducto ;
-
+/*
 select c.idcarrito,c.idUsuario,dp.idproducto,c.NombreProd,c.FechaCompra,dp.precio,dp.cantidad, dp.precio*Cantidad as total 
 from carrito c join detalleproducto dp on c.idcarrito=dp.idcarrito 
 where c.idusuario=5 group by dp.idproducto;
 
 select * from detalleproducto group by idcarrito;
 delete from detalleproducto;
-
+*/
 create table detalleproducto(
 idCarrito int not null,
 idProducto int not null,
@@ -68,7 +55,7 @@ Descripcion text,
 Cantidad_Venta decimal(10,2),
 foreign key compra(idusuario) references usuario(idusuario)
 );
-select * from compra;
+
 create table log_Registro(
 idlog int primary key auto_increment not null,
 fecha datetime not null,
@@ -120,3 +107,4 @@ end $$
 
 */
 
+select * from log_registro;
