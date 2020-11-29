@@ -44,6 +44,7 @@ namespace Proyecto_Final_BD
                     btnCerrar.Visible = true;
                     btnAñadirProd.Visible = true;
                     pctbCarrito.Visible = false;
+                    btnReportes.Show();
                     grvPrincipal.DataSource = null;
                     grvPrincipal.DataSource = new DAOProducto().getAll();
 
@@ -77,6 +78,7 @@ namespace Proyecto_Final_BD
             }
             else
             {
+                btnReportes.Hide();
                 btnCerrar.Hide();
                 btnAñadirProd.Hide();
                 pctbCarrito.Visible = false;
@@ -163,6 +165,12 @@ namespace Proyecto_Final_BD
         private void pctbCarrito_Click(object sender, EventArgs e)
         {
             new Carrito(idusuario).Show();
+            this.Hide();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            new Reporte().Show();
             this.Hide();
         }
     }

@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.pnlBotones = new System.Windows.Forms.Panel();
+            this.btnAñadirProd = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pctbCarrito = new System.Windows.Forms.PictureBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.grvPrincipal = new System.Windows.Forms.DataGridView();
-            this.btnAñadirProd = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.pnlBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbCarrito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPrincipal)).BeginInit();
@@ -43,6 +44,7 @@
             // pnlBotones
             // 
             this.pnlBotones.BackColor = System.Drawing.Color.DimGray;
+            this.pnlBotones.Controls.Add(this.btnReportes);
             this.pnlBotones.Controls.Add(this.btnAñadirProd);
             this.pnlBotones.Controls.Add(this.btnCerrar);
             this.pnlBotones.Controls.Add(this.pctbCarrito);
@@ -52,6 +54,15 @@
             this.pnlBotones.Name = "pnlBotones";
             this.pnlBotones.Size = new System.Drawing.Size(970, 35);
             this.pnlBotones.TabIndex = 0;
+            // 
+            // btnAñadirProd
+            // 
+            this.btnAñadirProd.Location = new System.Drawing.Point(733, 9);
+            this.btnAñadirProd.Name = "btnAñadirProd";
+            this.btnAñadirProd.Size = new System.Drawing.Size(82, 23);
+            this.btnAñadirProd.TabIndex = 4;
+            this.btnAñadirProd.Text = "Añadir";
+            this.btnAñadirProd.UseVisualStyleBackColor = true;
             // 
             // btnCerrar
             // 
@@ -105,14 +116,15 @@
             this.grvPrincipal.TabIndex = 1;
             this.grvPrincipal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grvPrincipal_CellContentClick);
             // 
-            // btnAñadirProd
+            // btnReportes
             // 
-            this.btnAñadirProd.Location = new System.Drawing.Point(733, 9);
-            this.btnAñadirProd.Name = "btnAñadirProd";
-            this.btnAñadirProd.Size = new System.Drawing.Size(82, 23);
-            this.btnAñadirProd.TabIndex = 4;
-            this.btnAñadirProd.Text = "Añadir";
-            this.btnAñadirProd.UseVisualStyleBackColor = true;
+            this.btnReportes.Location = new System.Drawing.Point(458, 9);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(75, 23);
+            this.btnReportes.TabIndex = 2;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // Principal
             // 
@@ -142,5 +154,6 @@
         private System.Windows.Forms.PictureBox pctbCarrito;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnAñadirProd;
+        private System.Windows.Forms.Button btnReportes;
     }
 }

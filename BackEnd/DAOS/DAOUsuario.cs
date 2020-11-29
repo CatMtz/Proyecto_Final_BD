@@ -47,6 +47,10 @@ namespace BackEnd.DAOS
             {
                 throw new Exception("Error al obtener datos del usuario");
             }
+            finally
+            {
+                conexion.Clone();
+            }
            
         }
        /// <summary>

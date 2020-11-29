@@ -33,6 +33,7 @@
             this.btnComprar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.lblTot = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grvCarrito)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,17 +80,27 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(510, 358);
+            this.lblTotal.Location = new System.Drawing.Point(444, 359);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(13, 13);
+            this.lblTotal.Size = new System.Drawing.Size(49, 13);
             this.lblTotal.TabIndex = 5;
-            this.lblTotal.Text = "  ";
+            this.lblTotal.Text = "  Total: $";
+            // 
+            // lblTot
+            // 
+            this.lblTot.AutoSize = true;
+            this.lblTot.Location = new System.Drawing.Point(538, 359);
+            this.lblTot.Name = "lblTot";
+            this.lblTot.Size = new System.Drawing.Size(13, 13);
+            this.lblTot.TabIndex = 6;
+            this.lblTot.Text = "  ";
             // 
             // Carrito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 396);
+            this.Controls.Add(this.lblTot);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnComprar);
@@ -111,5 +122,6 @@
         private System.Windows.Forms.Button btnComprar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblTot;
     }
 }

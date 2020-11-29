@@ -53,14 +53,16 @@ namespace BackEnd.DAOS
                 conexion = new MySqlConnection(new ConexionMySQL().GetConnectionString());
                 conexion.Open();
                 String consulta = "INSERT INTO Compra "
-                    + "VALUES (default,@idUsuario,@Descripcion)";
+                    + "VALUES (default,@idUsuario,@NombreUsuario,@Descripcion,@CantidadVenta)";
                 MySqlCommand comando = new MySqlCommand();
                 comando.Connection = conexion;
                 comando.CommandText = consulta;
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.Parameters.AddWithValue("@idUsuario", m.idUsuario);
+                comando.Parameters.AddWithValue("@Nombreusuario", m.NombreUsuario);
                 comando.Parameters.AddWithValue("@Descripcion", m.Descripcion);
-                
+                comando.Parameters.AddWithValue("@CantidadVenta", m.CantidadVenta);
+
                 afectados = comando.ExecuteNonQuery();
 
                 return afectados;

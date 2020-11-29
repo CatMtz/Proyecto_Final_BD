@@ -97,8 +97,10 @@ namespace Proyecto_Final_BD
                 }
 
 
-                descripcion+="\n"+(new DAOUsuario().getOne(idusuario).Nombre+" "+ new DAOUsuario().getOne(idusuario).Apellidos + "\t\t\t\t" + lblTotal.Text);
-                new DaoCompra().agregar(new Compra(idusuario, descripcion));
+                descripcion+="\n"+(new DAOUsuario().getOne(idusuario).Nombre+" "+ new DAOUsuario().getOne(idusuario).Apellidos + "\t\t\t\t" + lblTot.Text);
+                String nombre = new DAOUsuario().getOne(idusuario).Nombre + " " + new DAOUsuario().getOne(idusuario).Apellidos;
+                Decimal cantidad = Decimal.Parse(lblTot.Text);
+                new DaoCompra().agregar(new Compra(idusuario,nombre, descripcion,cantidad));
                 bool borrar = new DAOCarrito().deleteAll(idusuario);
                 new DaoDetalleProducto().delete();
                 MessageBox.Show("Se realizo la compra con exito");
@@ -127,7 +129,7 @@ namespace Proyecto_Final_BD
                 total += lista[i].Total;
             }
           
-            lblTotal.Text = "Total: $" + total;
+            lblTot.Text = ""+ total;
             return lista;
         }
     }
