@@ -118,7 +118,7 @@ namespace Proyecto_Final_BD
                     String nom =""+ grvPrincipal.Rows[e.RowIndex].Cells[1].Value;
                     Decimal precio =Decimal.Parse(""+grvPrincipal.Rows[e.RowIndex].Cells[2].Value);
                     Carritos car = new Carritos(idusuario,idusuario, nom);
-                    DetalleProducto det = new DetalleProducto(1,idpro, precio, 1);
+                    DetalleProducto det = new DetalleProducto(idpro, precio, 1);
                     new DAOCarrito().agregar(car);
                     new DaoDetalleProducto().agregar(det,nom,idusuario);
 

@@ -14,9 +14,9 @@ namespace BackEnd.MODELOS
         public int cantidad { get; set; }
 
         public DetalleProducto() { }
-        public DetalleProducto(int car,int prod,decimal pre,int cant)
+        public DetalleProducto(int prod,decimal pre,int cant)
         {
-            this.idCarrito = car;
+          
             this.idProducto = prod;
             this.Precio = pre;
             this.cantidad = cant;
