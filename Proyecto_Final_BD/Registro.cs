@@ -120,7 +120,11 @@ namespace Proyecto_Final_BD
             }
         }
 
-     
+     /// <summary>
+     /// 
+     /// </summary>
+     /// <param name="sender"></param>
+     /// <param name="e"></param>
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             DAOUsuario usu = new DAOUsuario();
@@ -155,10 +159,15 @@ namespace Proyecto_Final_BD
                 MessageBox.Show("Alguno de los espacios esta en blanco, favor de verificar");
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         public bool verificarContraseña(String pass)
         {
 
-            string expresion= @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8}$";
+            string expresion= @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,8}$";
             Regex automata =new Regex(expresion);
 
             bool resultado = automata.IsMatch(pass);

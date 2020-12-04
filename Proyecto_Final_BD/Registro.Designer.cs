@@ -66,10 +66,10 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 202);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(284, 39);
+            this.label2.Size = new System.Drawing.Size(301, 39);
             this.label2.TabIndex = 10;
-            this.label2.Text = "La contraseña debe tener 8 caracteres,al menos un dígito,\r\n al menos una minúscul" +
-    "a y al menos una mayúscula.\r\nNO puede tener otros símbolos.";
+            this.label2.Text = "La contraseña debe tener 5 y 8 caracteres,al menos un dígito,\r\n al menos una minú" +
+    "scula y al menos una mayúscula.\r\nNO puede tener otros símbolos.";
             // 
             // btnSalir
             // 
